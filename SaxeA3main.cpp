@@ -1,10 +1,3 @@
-/*
- * SaxeA3main.cpp
- *
- *  Created on: Mar 9, 2022
- *      Author: Nathan Saxe
- */
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -21,6 +14,7 @@ const int SIZE = 100;
 int main(){
 	fstream fs;
 	Student * stuArr[SIZE];
+	Student * stuTarg;
 	int stu = 0;
 	for(int i = 0; i < SIZE; i++){
 		stuArr[i] = nullptr;
@@ -44,13 +38,13 @@ int main(){
 			}
 		}
 		stuArr[stu]->firstName = firstName;
-		cout << stuArr[stu]->firstName;
+		//cout << stuArr[stu]->firstName;
 
 		char middleInit[1];
 		middleInit[0] = fileEntry[10];
 		middleInit[1] = '\0';
 		stuArr[stu]->middleInit = *middleInit;
-		cout << stuArr[stu]->middleInit << " ";
+		//cout << stuArr[stu]->middleInit << " ";
 		char lastName[20];
 		for(int i = 20, j = 0; j < 20; i++, j++){
 			lastName[j] = fileEntry[i];
@@ -61,41 +55,41 @@ int main(){
 			}
 		}
 		stuArr[stu]->lastName = lastName;
-		cout << stuArr[stu]->lastName;
+		//cout << stuArr[stu]->lastName;
 		char campusCode[1];
 		campusCode[0] = fileEntry[40];
 		campusCode[1] = '\0';
 		stuArr[stu]->campusCode = *campusCode;
-		cout << stuArr[stu]->campusCode << " ";
+		//cout << stuArr[stu]->campusCode << " ";
 		char studentID[9];
 		for(int i = 41, j = 0; j < 8; i++, j++){
 			studentID[j] = fileEntry[i];
-			cout << studentID[j];
+			//cout << studentID[j];
 		}
 		studentID[9] = '\0';
 		stuArr[stu]->studentID = studentID;
-		char age[3];
+		char age[4];
 		for(int i = 50, j = 0; j < 2; i++, j++){
 			age[j] = fileEntry[i];
+			//cout << age[j];
 		}
-		age[3] = '\0';
-		stuArr[stu]->age = *age;
+		age[4] = '\0';
+		stuArr[stu]->age = atoi(age);
 		stu++;
 	}
 
 	stu = 0;
-	cout << endl;
-	cout << "Last Name" << '\t' << "MI" << '\t' << "First Name"<< '\t' << "Campus Code" << '\t' << "Age" << endl;
+	cout << "Last Name" << '\t' << "MI" << '\t' << "First Name"<< '\t' << "Campus Code" << '\t'<< "Student Sequence" << '\t' << "Age" << endl;
 	cout << "===================================================================================================" << endl;
 	while(stuArr[stu]!=nullptr){
-		cout << stuArr[stu]->lastName << '\t' << stuArr[stu]->middleInit << '\t' << stuArr[stu]->firstName << '\t' << stuArr[stu]->campusCode << '\t' << stuArr[stu]->age << endl;
-		delete stuArr[stu];
+		cout << stuArr[stu]->lastName << setw(5) <<  '\t' << stuArr[stu]->middleInit << '\t' << stuArr[stu]->firstName << setw(7) << '\t' << stuArr[stu]->campusCode << setw(8) << '\t' << stuArr[stu]->studentID << setw(8) << '\t' << stuArr[stu]->age << endl;
+
 		stu++;
 	}
+	int average = ageCalc(stuArr, stuTarg);
 	fs.close();
 
 	return 0;
 }
-
 
 
