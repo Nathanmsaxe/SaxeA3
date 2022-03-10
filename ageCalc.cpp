@@ -9,22 +9,29 @@
 #include "ageCalc.hpp"
 #include <iostream>
 
-int ageCalc(Student *stuArr, Student * stu){
+int ageCalc(Student * stuArr[], Student * &stu){
 	int averageAge;
-	Student * bananas = stu;
-	for(unsigned int i = 0; i < sizeof(stuArr); i++){
-		averageAge += stuArr[i].age;
-		if(stuArr[i].age<stuArr[i-1].age){
-			stu->firstName = stuArr[i].firstName;
-			stu->age = stuArr[i].age;
+	//Student * bananas = stu;
+	//cout << "TEST" << endl;
+	int i = 1;
+	averageAge += stuArr[0]->age;
+	while(stuArr[i]!=nullptr){
+		cout << "TEST" << endl;
+		averageAge += stuArr[i]->age;
+		//cout << "TEST" << endl;
+		if(stuArr[i]->age<stuArr[i-1]->age){
+			cout << "TEST" << endl;
+			stu->firstName = stuArr[i]->firstName;
+
+			stu->age = stuArr[i]->age;
 		}
+		i++;
 	}
-	averageAge = averageAge/sizeof(stuArr);
+	averageAge = averageAge/i;
 	cout << "Average Age:";
-	return averageAge;
-	cout << "Lowest Age:";
-	return  bananas->age;
+	return static_cast<int>(averageAge);
 }
+
 
 
 
