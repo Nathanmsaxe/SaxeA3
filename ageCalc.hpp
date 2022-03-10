@@ -5,11 +5,13 @@
  *      Author: Nathan Saxe
  */
 
+
 #ifndef SRC_AGECALC_HPP_
 #define SRC_AGECALC_HPP_
 
-int ageCalc(Student * [], Student * &);
+int ageCalc(Student *[], Student * &);
 
 
 
 #endif /* SRC_AGECALC_HPP_ */
+
